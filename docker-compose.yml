@@ -1,0 +1,5 @@
+services:
+  insight-ai:
+    image: mallikarjun7411/insight-ai
+    ports:
+      - "8083:8080"
