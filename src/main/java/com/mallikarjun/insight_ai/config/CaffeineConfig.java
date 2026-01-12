@@ -45,7 +45,8 @@ public class CaffeineConfig {
                     public long expireAfterUpdate(
                             String key, Object value,
                             long currentTime, long currentDuration) {
-                        return currentDuration;
+                        // Re-run the TTL logic so the "Late Night" rule applies to updates too
+                        return expireAfterCreate(key, value, currentTime);
                     }
 
                     @Override
