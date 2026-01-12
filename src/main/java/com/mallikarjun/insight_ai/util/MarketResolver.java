@@ -7,10 +7,17 @@ import org.springframework.stereotype.Component;
 public class MarketResolver {
 
     public Market resolveMarket(String ticker) {
-        // simple rule – improve later using metadata
-        if (ticker.endsWith(".NS") || ticker.endsWith(".BSE")) {
+
+        if (ticker == null || ticker.isBlank()) {
+            throw new IllegalArgumentException("Ticker cannot be null or empty");
+        }
+
+        String normalizedTicker = ticker.toUpperCase();
+
+        if (normalizedTicker.endsWith(".NS") || normalizedTicker.endsWith(".BSE")) {
             return Market.INDIA;
         }
+
         return Market.US;
     }
 }
